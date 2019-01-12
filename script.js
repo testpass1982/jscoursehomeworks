@@ -8,14 +8,14 @@ $( document ).ready(function() {
         let celsius = $("#celsius_input").val();
         let fahrengeit = (9/5)*celsius+32;
         console.log('converted! '+fahrengeit);
-        result_of_conversion = 'In Fahrengeit it will be '+fahrengeit+' °F';
+        let result_of_conversion = 'In Fahrengeit it will be '+fahrengeit+' °F';
         $('#task1_result').html(result_of_conversion);
     });
 
 
     $('#task2_button').click(function(){
         let name = $("#task2_input").val();
-        let admin = ''
+        let admin = '';
         admin = name;
         console.log(admin);
         $("#task2_result").html('Name of admin: '+admin);
@@ -27,7 +27,7 @@ $( document ).ready(function() {
         let message = '';
         // console.log(typeof(number_input));
         // console.log(typeof(string_input));
-        if (typeof(number_input)!="number" || isNaN(number_input) || typeof(string_input)!='string') {
+        if (isNaN(number_input) || typeof(string_input)!='string') {
             message = 'You passed wrong types to the fields... please input \
             a number to the 1st field, and a string to 2nd field';
         } else {

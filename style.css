@@ -9,3 +9,30 @@
 .my_bank_result {
     display: block;
 }
+
+.chess_field_area {
+    display: flex;
+    flex-flow: row wrap;
+    width: 330px;
+}
+
+.chess_field_row_number {
+    line-height: 40px;
+}
+
+.chess_field_letter {
+    padding-left: 15px;
+    width: 40px;
+    text-align: center;
+}
+
+.chess_field_cell {
+    width: 40px;
+    height: 40px;
+    border: 1px solid black;
+}
+.dark_chess_field_cell {
+    width: 40px;
+    height: 40px;
+    background-color: black;
+}

@@ -17,6 +17,7 @@ const gallery = {
     openedImageScreenClass: 'galleryWrapper__screen',
     openedImageCloseBtnClass: 'galleryWrapper__close',
     openedImageCloseBtnSrc: 'images/gallery/close.png',
+    notFoundImageSrc: 'images/gallery/img_not_found.jpeg',
   },
 
   /**
@@ -54,6 +55,12 @@ const gallery = {
    * @param {string} src Ссылка на картинку, которую надо открыть.
    */
   openImage(src) {
+    let img = new Image();
+    img.src = src;
+    img.onerror = () => {
+      this.getScreenContainer().querySelector(`.${this.settings.openedImageClass}`).src = 
+        this.settings.notFoundImageSrc;
+    }
     // Получаем контейнер для открытой картинки, в нем находим тег img и ставим ему нужный src.
     this.getScreenContainer().querySelector(`.${this.settings.openedImageClass}`).src = src;
   },

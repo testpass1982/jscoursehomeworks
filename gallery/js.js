@@ -16,7 +16,14 @@ const gallery = {
     openedImageClass: 'galleryWrapper__image',
     openedImageScreenClass: 'galleryWrapper__screen',
     openedImageCloseBtnClass: 'galleryWrapper__close',
+    faArrow: 'fas',
+    faArrowRight: 'fa-arrow-right',
+    faArrowLeft: 'fa-arrow-left',
+    bigArrow: 'big',
+    toTheRight: 'to_the_right',
+    toTheLeft: 'to_the_left',
     openedImageCloseBtnSrc: 'images/gallery/close.png',
+    notFoundImageSrc: 'images/gallery/img_not_found.jpeg',
   },
 
   /**
@@ -33,6 +40,9 @@ const gallery = {
     document
       .querySelector(this.settings.previewSelector)
       .addEventListener('click', event => this.containerClickHandler(event));
+    let allPictures = $('.picture');
+    let pictList = $(document).find(allPictures);
+    console.log('pictures:', pictList);
   },
 
   /**
@@ -54,6 +64,12 @@ const gallery = {
    * @param {string} src Ссылка на картинку, которую надо открыть.
    */
   openImage(src) {
+    let img = new Image();
+    img.src = src;
+    img.onerror = () => {
+      this.getScreenContainer().querySelector(`.${this.settings.openedImageClass}`).src = 
+        this.settings.notFoundImageSrc;
+    }
     // Получаем контейнер для открытой картинки, в нем находим тег img и ставим ему нужный src.
     this.getScreenContainer().querySelector(`.${this.settings.openedImageClass}`).src = src;
   },
@@ -95,16 +111,41 @@ const gallery = {
     closeImageElement.addEventListener('click', () => this.close());
     galleryWrapperElement.appendChild(closeImageElement);
 
+    
     // Создаем картинку, которую хотим открыть, ставим класс и добавляем ее в контейнер-обертку.
     const image = new Image();
     image.classList.add(this.settings.openedImageClass);
     galleryWrapperElement.appendChild(image);
-
+    
+    //Создаем стрелки влево и вправо
+    const	left_arrow = document.createElement('I');
+    const right_arrow = document.createElement('I');
+    left_arrow.classList.add(this.settings.faArrow,
+                             this.settings.faArrowLeft,
+                             this.settings.bigArrow,
+                             this.settings.toTheLeft);
+    right_arrow.classList.add(this.settings.faArrow,
+                              this.settings.faArrowRight,
+                              this.settings.bigArrow,
+                              this.settings.toTheRight);
+    galleryWrapperElement.appendChild(left_arrow);
+    galleryWrapperElement.appendChild(right_arrow);
+    left_arrow.addEventListener('click', ()=> this.goPrevious());
+    right_arrow.addEventListener('click', ()=> this.goNext());
+    
     // Добавляем контейнер-обертку в тег body.
     document.body.appendChild(galleryWrapperElement);
 
     // Возвращаем добавленный в body элемент, наш контейнер-обертку.
     return galleryWrapperElement;
+  },
+
+  goPrevious() {
+    console.log('left');
+  },
+
+  goNext() {
+    console.log('right');
   },
 
   /**

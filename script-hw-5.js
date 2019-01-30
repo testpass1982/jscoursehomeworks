@@ -6,9 +6,9 @@ function chessFieldGenerate() {
         field.innerHTML+=`<div class="chess_field_row_number">${i+1}</div>`;
         for (let j = 0; j < 8; j++) {
             if (i%2 == j%2) {
-                field.innerHTML+='<div class="chess_field_cell"></div>'
-            } else {
                 field.innerHTML+='<div class="dark_chess_field_cell"></div>'
+            } else {
+                field.innerHTML+='<div class="chess_field_cell"></div>'
             }
         }
     }

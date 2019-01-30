@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>BasketApp</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <title>BasketApp</title>
+</head>
+
+<body>
+    <div class="container red-text"><h2>
+        My Basket:
+    </h2></div>
+    <div class="container">
+        <table id="goodsList" class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Product</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Price</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr style="visibility: hidden"></tr>
+            </tbody>
+        </table>
+        <h4>Total in basket: <span id="basket_total_quantity">0</span> for <span id="basket_total_sum">0</span>$</h4>
+    </div>
+
+    <div class="container">
+        <div class="card-deck">
+            <div class="card">
+                <img src="images/pencil.jpg" alt="" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">A pencil</h5>
+                    <p class="card-text">1$</p>
+                    <a href="#" class="btn btn-primary" data-name="pencil" data-price="1" data-product_id="1">Buy</a>
+                </div>
+            </div>
+            <div class="card">
+                <img src="images/divider.jpg" alt="" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">A divider</h5>
+                    <p class="card-text">2$</p>
+                    <a href="#" class="btn btn-primary" data-name="divider" data-price="2" data-product_id="2">Buy</a>
+                </div>
+            </div>
+            <div class="card">
+                <img src="images/ruler.jpg" alt="" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">A ruler</h5>
+                    <p class="card-text">3$</p>
+                    <a href="#" class="btn btn-primary" data-name="ruler" data-price="3" data-product_id="3">Buy</a>
+                </div>
+            </div>
+            <div class="card">
+                <img src="images/pencil_case.jpg" alt="" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">A pencil case</h5>
+                    <p class="card-text">3$</p>
+                    <a href="#" class="btn btn-primary" data-name="pencil case" data-price="3" data-product_id="4">Buy</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

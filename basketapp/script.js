@@ -1,6 +1,7 @@
 'use strict';
 
 /**
+* Мини-приложение "Корзина"
 * @constructor Class representing a product
 * @param {number} product.id Идентификатор продукта
 * @param {string} name Название продукта

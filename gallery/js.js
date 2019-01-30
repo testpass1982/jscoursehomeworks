@@ -16,6 +16,7 @@ const gallery = {
     openedImageClass: 'galleryWrapper__image',
     openedImageScreenClass: 'galleryWrapper__screen',
     openedImageCloseBtnClass: 'galleryWrapper__close',
+    previewPictureClass: 'picture',
     faArrow: 'fas',
     faArrowRight: 'fa-arrow-right',
     faArrowLeft: 'fa-arrow-left',
@@ -40,9 +41,9 @@ const gallery = {
     document
       .querySelector(this.settings.previewSelector)
       .addEventListener('click', event => this.containerClickHandler(event));
-    let allPictures = $('.picture');
-    let pictList = $(document).find(allPictures);
-    console.log('pictures:', pictList);
+    // let allPictures = $('.picture');
+    // let this.pictList = $(document).find(allPictures);
+    // console.log('pictures:', pictList);
   },
 
   /**
@@ -140,12 +141,37 @@ const gallery = {
     return galleryWrapperElement;
   },
 
+  getCurrentPicture() {
+    let pict=document.querySelector(`.${this.settings.openedImageClass}`);
+    return pict.currentSrc;
+  },
+
   goPrevious() {
-    console.log('left');
+    console.log('we go left');
+    let current = this.getCurrentPicture();
+    let imgList = document.querySelectorAll(`.${this.settings.previewPictureClass}`);
+    let imgSrcList = [];
+    imgList.forEach(function(element) {
+      imgSrcList.push(element.currentSrc.replace('min', 'max'));
+    });
+    console.log(imgSrcList);
+    let currentIndex = imgSrcList.indexOf(current);
+    if (currentIndex >= 1) {
+      console.log(currentIndex);
+      this.openImage(imgSrcList[currentIndex-1]);
+    }
   },
 
   goNext() {
-    console.log('right');
+    console.log('we go right');
+    let current = this.getCurrentPicture();
+    let imgList = document.querySelectorAll(`.${this.settings.previewPictureClass}`);
+    let imgSrcList = [];
+    imgList.forEach(function(element) {
+      imgSrcList.push(element.currentSrc.replace('min', 'max'));
+    });
+    let currentIndex = imgSrcList.indexOf(current);
+    this.openImage(imgSrcList[currentIndex+1]);
   },
 
   /**

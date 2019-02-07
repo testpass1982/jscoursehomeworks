@@ -1,0 +1,7 @@
+@import '_variables.scss';
+.product-item {
+    color: $black;
+    &:hover {
+        box-shadow: inset 0px 0px 1px #000;
+    }
+}

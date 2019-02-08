@@ -40,11 +40,7 @@ function watchFiles() {
 
 // Init BrowserSync.
 function browserSync(done) {
-  browsersync.init({
-    // proxy: '127.0.0.1:3000', // Change this value to match your local URL.
-    // socket: {
-    //   domain: 'localhost:3000'
-    // }
+  browsersync.init(['./**.**'], {
     server: {
         baseDir: "./"
     },

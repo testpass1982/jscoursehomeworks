@@ -35,7 +35,7 @@ $(document).ready(function(){
 
     const renderNav = list => {
         const menuList = list.map(item => renderMenu(item.title, item.link)).join('');
-        document.querySelector('#menu').innerHTML = menuList;
+        $('#menu').html(menuList);
     };
 
     const renderPage = list => {

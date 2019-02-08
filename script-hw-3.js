@@ -65,9 +65,7 @@ arr[arrayIndex].forEach(function(item){
         minArrayValue = item;
     }
 })
-
+t
 console.log(`max sum: ${maxSumValue}`);
 console.log(`arr index: ${arrayIndex}`);
 console.log(`min value: ${minArrayValue}`);
-
-

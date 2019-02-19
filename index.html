@@ -12,18 +12,62 @@
 <body>
     <div class="container my-4">
         <header>
-        <nav>
-            <div class="top-menu navbar navbar-expand-lg navbar-light bg-light" id="menu"></div>
-        </nav>
-        <div class="d-flex align-items-center">
-            <button class="btn btn-primary btn-cart my-3 mx-2" type="button">Basket</button>
-            <div>Товаров в корзине на сумму: <span id="basketTotal">0</span> рублей</div>
-        </div>
+            <nav>
+                <div class="top-menu navbar navbar-expand-lg navbar-light bg-light" id="menu"></div>
+            </nav>
+            <div class="d-flex align-items-center">
+                <button class="btn btn-primary btn-cart my-3 mx-2" type="button">Basket</button>
+                <div>Товаров в корзине на сумму: <span id="basketTotal">0</span> рублей</div>
+            </div>
         </header>
         <main>
             <div class="products card-deck"></div>
+            <div class="my-3 mx-2">
+                <input type="button" class="btn btn-warning" id="askQuestion" data-toggle="modal" data-target="#askQuestionModal"
+                    value="Задать вопрос">
+            </div>
         </main>
         <div id="explanation"></div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="askQuestionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Форма обратной связи</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <p class="text-danger" id="warning"></p>
+                            <div class="form-group">
+                                <label for="NameInput">Имя</label>
+                                <input type="text" class="form-control" id="NameInput">
+                            </div>
+                            <div class="form-group">
+                                <label for="PhoneInput">Телефон</label>
+                                <input type="text" class="form-control" id="PhoneInput">
+                            </div>
+                            <div class="form-group">
+                                <label for="EmailInput">Email</label>
+                                <input type="text" class="form-control" id="EmailInput">
+                            </div>
+                            <div class="form-group">
+                                <label for="TextInput">Текст вопроса</label>
+                                <textarea name="questionTextInput" class="form-control" id="questionTextInput" rows="3"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                        <button type="button" id="sendFormButton" class="btn btn-primary">Отправить</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>

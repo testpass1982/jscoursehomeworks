@@ -106,5 +106,39 @@ $(document).ready(function(){
         );
     });
 
+    $('#sendFormButton').click( () => {
+        let nameText = $('#NameInput').val();
+        let phoneText = $('#PhoneInput').val();
+        let emailText = $('#EmailInput').val();
+        correctNameText = /[A-Za-zА-ЯЁа-яё]/g;
+        correctPhoneText = /^[\+][0-9]{1}[(][0-9]{3}[)][0-9]{3}[\-]{1}[0-9]{3}/;
+        correctEmailText = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+        $('#warning').html('');
+        if (!correctNameText.test(nameText)) {
+            $('#NameInput').addClass('is-invalid');
+            $('#warning').append('<p class="nameWarning">- Имя должно \
+            содержать только буквы латинского или \
+            кириллического алфавита<p>');
+        } else {
+            $('#NameInput').removeClass('is-invalid');
+        }
+
+        if (!correctPhoneText.test(phoneText)) {
+            $('#PhoneInput').addClass('is-invalid');
+            $('#warning').append('<p class="phoneWarning">- Телефон должен быть формата \
+            +0(000)000-0000</p>');
+        } else {
+            $('#PhoneInput').removeClass('is-invalid');
+        }
+
+        if (!correctEmailText.test(emailText)) {
+            $('#EmailInput').addClass('is-invalid');
+            $('#warning').append('<p class="emailWarning">- Email введен некорректно</p>');
+        } else {
+            $('#EmailInput').removeClass('is-invalid');
+        }
+
+    });
+
 })
 

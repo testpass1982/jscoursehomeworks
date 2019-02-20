@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>REGEXP_task1</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="text m-5">
+            Aren't we already use this dummy text? Lorem ipsum 'dolor sit amet consectetur' adipisicing elit.
+            'Assumenda nesciunt' sed optio provident unde beatae
+            repellat laborum omnis, minima deleniti!
+        </div>
+        <input type="button" class="btn btn-primary" id='all_quotes' value="change ALL quotes">
+        <input type="button" class="btn btn-primary" id='double_quotes' value="change ONLY double quotes">
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+
+
+    <script>
+        $(document).ready(function () {
+            //task1
+            $('#all_quotes').click(() => {
+                let str = $('.text').text();
+                let regexp = /\'/g;
+                let new_str = str.replace(regexp, '"');
+                $('.text').text(new_str);
+                console.log('quotes changed!');
+            });
+            //task2
+            $('#double_quotes').click(() => {
+                let str = $('.text').text();
+                let start_quotes = /\s\'/g;
+                let end_quotes = /\'\s/g;
+                let new_str = str.replace(start_quotes, ' "');
+                new_str = new_str.replace(end_quotes, '" ');
+                $('.text').text(new_str);
+            });
+        })
+    </script>
+</body>
+
+</html>

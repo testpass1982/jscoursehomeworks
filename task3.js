@@ -45,8 +45,8 @@ class Burger {
 class Topping {
     constructor(toppings) {
         this.price = 0;
-        this.toppings = toppings;
-        this.toppings.forEach(function(topping){
+        this.ingredients = [];
+        toppings.forEach(function(topping){
             this.toppings.push(TOPPINGS[topping]);
             this.price+=(TOPPINGS[topping]['price']);
         })
@@ -59,9 +59,11 @@ class Topping {
 }
 
 class BurgerWithToping {
-    constructor(type, toppings=0) {
+    constructor(type, toppings=null) {
         this.buger = new Burger(type);
-        toppings !== 0 ? this.toppings = new Topping(toppings) : this.toppings = 0;
+        if (toppings !== null) {
+            this.toppings = new Topping(toppings);
+        }
         this.price = 0;
         this.calories = 0;
     }

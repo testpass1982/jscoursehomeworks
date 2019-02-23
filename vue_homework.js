@@ -1,27 +1,27 @@
-const app = new Vue({
+let app = new Vue({
     el: '#app',
     data: {
         name: 'GeekShop',
         customer: '',
         promoProducts: ['Новые конкурсы', 'Новые поступления', 'Новые скидки'],
-        // goods = products
-        // filteredGoods: [],
-        // searchLine: ''
+        bskt: '',
+        goods: '',
+        search: '',
+        products: products
     },
     methods: {
         clickHandler() {
             console.log('click');
+            console.log('basket', this.basket);
         },
-        vueClickHandler() {
-            console.log('vue click');
-        },
+        filterGoods() {
+            return this.products.filter(
+                item => {
+                    return item.title.toLowerCase().includes(
+                        this.search.toLowerCase());
+                })
+            });
+
+        }
     },
-    mounted() {
-        this.goods = products;
-    //     this.filteredGoods = filteredGoods;
-    //     this.goods.forEach(item => {
-    //         console.log(item);
-    //     }
-    //     );
-    }
 });

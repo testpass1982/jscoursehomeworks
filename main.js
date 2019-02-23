@@ -20,6 +20,7 @@ $(document).ready(function () {
         addProduct(product) {
             this.goods.push(product);
             this.totalSum += product.itemPrice;
+            this.totalQuantinty+=1;
         }
 
         removeProduct(product) {
@@ -34,6 +35,12 @@ $(document).ready(function () {
         constructor() {
             this.basketId = 0;
             this.goodsList = new GoodsList();
+        }
+        countTotalSum() {
+            return this.goodsList.totalSum;
+        }
+        countTotalQuantinty() {
+            return this.goodsList.totalQuantinty;
         }
     }
 
@@ -76,7 +83,8 @@ $(document).ready(function () {
     };
 
     let basket = new Basket();
-
+    app.bskt = basket;
+    app.goods = basket.goodsList;
     renderNav(menu);
     renderPage(products);
 

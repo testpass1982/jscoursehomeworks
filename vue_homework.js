@@ -14,14 +14,12 @@ let app = new Vue({
             console.log('click');
             console.log('basket', this.basket);
         },
-        filterGoods() {
+        filteredGoods() {
             return this.products.filter(
                 item => {
                     return item.title.toLowerCase().includes(
-                        this.search.toLowerCase());
-                })
-            });
-
-        }
+                        this.search.toLowerCase())
+                    })
+        },
     },
 });

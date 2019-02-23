@@ -48,12 +48,16 @@
                 <form class="form-inline mb-3" action="#">
                     <div class="form-group">
                         <div class="form-row">
-                        <label class="mr-1" for="fast_search">Быстрый поиск товаров</label>
+                        <label class="mr-1" for="fast_search">Быстрый поиск товаров:</label>
                         <input v-model="search" class="form-control mr-1" id="fast_search" type="text">
-                        <input @click="filterGoods()" type="submit" value="Поиск" name="Search" class="btn btn-primary">
                         </div>
                     </div>
                 </form>
+                <div v-if="search.length!=0" class="alert alert-info">
+                    <p v-for="item in filteredGoods()">
+                        {{ item.title }} : {{ item.price }}$
+                    </p>
+                </div>
                 <div class="products card-deck"></div>
                 <div class="my-3 mx-2">
                     <input type="button" class="btn btn-warning" id="askQuestion" data-toggle="modal" data-target="#askQuestionModal"

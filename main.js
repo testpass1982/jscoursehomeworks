@@ -1,19 +1,5 @@
-$(document).ready(function(){
-    console.log('hi');
-    const menu = [
-        {title: 'Главная', link:'index.html'},
-        {title: 'О магазине', link:'about.html'},
-        {title: 'Доставка', link:'delivery.html'},
-        {title: 'Гарантия', link:'warranty.html'},
-    ];
-
-    const products = [
-        {title: 'Notebook', price: 2000, img: 'img/notebook.png'},
-        {title: 'Mouse', price: 20, img: 'img/mouse.png'},
-        {title: 'Keyboard', price: 35, img: 'img/keyboard.png'},
-        {title: 'Gamepad', price: 48, img: 'img/gamepad.png'},
-        {title: 'Chair', price: 500, img: 'img/chair.png'},
-    ];
+$(document).ready(function () {
+    console.log('hi from main.js');
 
     class GoodsList {
         constructor() {
@@ -24,8 +10,8 @@ $(document).ready(function(){
 
         countTotalSum() {
             let total = 0;
-            this.goods.forEach(function(item){
-                total+=item.price;
+            this.goods.forEach(function (item) {
+                total += item.price;
             });
             this.totalSum = total;
             return this.totalSum;
@@ -45,14 +31,14 @@ $(document).ready(function(){
 
     }
     class Basket {
-        constructor () {
+        constructor() {
             this.basketId = 0;
             this.goodsList = new GoodsList();
         }
     }
 
     class BasketItem {
-        constructor (itemName='', itemPrice=0) {
+        constructor(itemName = '', itemPrice = 0) {
             this.itemId = `${itemName}_id`;
             this.itemName = itemName;
             this.itemPrice = parseInt(itemPrice);
@@ -60,11 +46,11 @@ $(document).ready(function(){
         }
     }
 
-    const renderMenu = (title="Menu name", link="#") => {
+    const renderMenu = (title = "Menu name", link = "#") => {
         return `<a class="nav-link" href="${link}">${title}</a>`
     };
 
-    const renderProduct = (title="Product name", price=0, img='') => {
+    const renderProduct = (title = "Product name", price = 0, img = '') => {
         return `
         <div class="card product-item p-2">
             <div class="h-50">
@@ -94,7 +80,7 @@ $(document).ready(function(){
     renderNav(menu);
     renderPage(products);
 
-    $('.buy-button').click(function(){
+    $('.buy-button').click(function () {
         let title = this.dataset.title;
         let price = this.dataset.price;
         let basketItem = new BasketItem(title, price);
@@ -106,7 +92,7 @@ $(document).ready(function(){
         );
     });
 
-    $('#sendFormButton').click( () => {
+    $('#sendFormButton').click(() => {
         let nameText = $('#NameInput').val();
         let phoneText = $('#PhoneInput').val();
         let emailText = $('#EmailInput').val();
@@ -141,4 +127,3 @@ $(document).ready(function(){
     });
 
 })
-

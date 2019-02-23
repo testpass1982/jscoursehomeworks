@@ -6,69 +6,117 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
         crossorigin="anonymous">
     <link rel="stylesheet" href="css/styles.css">
-    <title>Интернет магазин</title>
+    <title>Интернет магазин </title>
 </head>
 
 <body>
-    <div class="container my-4">
-        <header>
-            <nav>
-                <div class="top-menu navbar navbar-expand-lg navbar-light bg-light" id="menu"></div>
-            </nav>
-            <div class="d-flex align-items-center">
-                <button class="btn btn-primary btn-cart my-3 mx-2" type="button">Basket</button>
-                <div>Товаров в корзине на сумму: <span id="basketTotal">0</span> рублей</div>
-            </div>
-        </header>
-        <main>
-            <div class="products card-deck"></div>
-            <div class="my-3 mx-2">
-                <input type="button" class="btn btn-warning" id="askQuestion" data-toggle="modal" data-target="#askQuestionModal"
-                    value="Задать вопрос">
-            </div>
-        </main>
-        <div id="explanation"></div>
+    <div id="app">
+        <div class="container my-4">
+            <header>
+                <h3>Интернет магазин {{ name }} рад приветствовать Вас!</h3>
+                <p>{{ name.toUpperCase() }} предлагает Вам поучаствовать в акции!</p>
+                <form action="#">
+                    <div class="form-group">
+                        <label for="customer_name">Интересно? заполните форму:</label>
+                        <input id="customer_name" type="text" v-model="customer" class="form-control w-25">
+                    </div>
+                    <p>
+                        В акции принимает участие: <b v-if="customer.length != 0">{{ customer }}</b><b v-else>Имя не
+                            указано</b>
+                    </p>
+                        <div class="alert alert-info">Мы не будем использовать ваш адрес для назойливых уведомлений,
+                            <div class="form-group">
+                            но все же иногда мы бы хотели отправлять вам следующую информацию:
+                            <div v-for="(item, index) in promoProducts" class="form-check">
+                                <input type="checkbox" class="form-check-input" :id="'exampleCheck'+index">
+                                <label class="form-check-label" :for="'exampleCheck'+index">{{ item }}</label>
+                            </div>
+                        </div>
+                        </div>
+                    <button @click="clickHandler" class="btn btn-info mb-3">Отправить</button>
+                </form>
+                <nav>
+                    <div class="top-menu navbar navbar-expand-lg navbar-light bg-light" id="menu"></div>
+                </nav>
+                <div class="d-flex align-items-center">
+                    <button class="btn btn-primary btn-cart my-3 mx-2" data-toggle="modal" data-target="#basketModal" type="button">Basket</button>
+                    <div>Товаров в корзине на сумму: <span id="basketTotal">0</span> руб.</div>
+                </div>
+            </header>
+            <main>
+                <div class="products card-deck"></div>
+                <div class="my-3 mx-2">
+                    <input type="button" class="btn btn-warning" id="askQuestion" data-toggle="modal" data-target="#askQuestionModal"
+                        value="Задать вопрос">
+                </div>
+            </main>
+            <div id="explanation"></div>
 
-        <!-- Modal -->
-        <div class="modal fade" id="askQuestionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            <!-- Ask Question Modal -->
+            <div class="modal fade" id="askQuestionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Форма обратной связи</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <p class="text-danger" id="warning"></p>
+                                <div class="form-group">
+                                    <label for="NameInput">Имя</label>
+                                    <input type="text" class="form-control" id="NameInput">
+                                </div>
+                                <div class="form-group">
+                                    <label for="PhoneInput">Телефон</label>
+                                    <input type="text" class="form-control" id="PhoneInput">
+                                </div>
+                                <div class="form-group">
+                                    <label for="EmailInput">Email</label>
+                                    <input type="text" class="form-control" id="EmailInput">
+                                </div>
+                                <div class="form-group">
+                                    <label for="TextInput">Текст вопроса</label>
+                                    <textarea name="questionTextInput" class="form-control" id="questionTextInput" rows="3"></textarea>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                            <button type="button" id="sendFormButton" class="btn btn-primary">Отправить</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Basket Modal -->
+        <div class="modal fade" id="basketModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Форма обратной связи</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Ваша корзина</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form>
-                            <p class="text-danger" id="warning"></p>
-                            <div class="form-group">
-                                <label for="NameInput">Имя</label>
-                                <input type="text" class="form-control" id="NameInput">
-                            </div>
-                            <div class="form-group">
-                                <label for="PhoneInput">Телефон</label>
-                                <input type="text" class="form-control" id="PhoneInput">
-                            </div>
-                            <div class="form-group">
-                                <label for="EmailInput">Email</label>
-                                <input type="text" class="form-control" id="EmailInput">
-                            </div>
-                            <div class="form-group">
-                                <label for="TextInput">Текст вопроса</label>
-                                <textarea name="questionTextInput" class="form-control" id="questionTextInput" rows="3"></textarea>
-                            </div>
-                        </form>
+                        ...
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
-                        <button type="button" id="sendFormButton" class="btn btn-primary">Отправить</button>
+                        <button type="button" class="btn btn-primary">Отправить заказ</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <script src="constants.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
@@ -76,6 +124,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
         crossorigin="anonymous"></script>
     <script src="main.js"></script>
+    <script src="vue_homework.js"></script>
 </body>
 
 </html>
